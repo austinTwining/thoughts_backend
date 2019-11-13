@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo')(session)
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -33,6 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/register', require('./api/register'))
 app.use('/login', require('./api/login'))
 app.use('/logout', require('./api/logout'))
+app.use('/auth', require('./api/authenticate'))
 
 app.listen(port, () =>{
     console.log(`Server started on port ${port}...`)
