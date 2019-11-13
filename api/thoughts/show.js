@@ -4,13 +4,13 @@ const jwt = require('jsonwebtoken')
 
 const Thought = require('../models/Thought')
 
-router.post('/', async (req, res) => {
+//gets all posts by logged in user
+router.get('/', (req, res) => {
 
     //TODO: proper input validation
     //validate inputs
     if(!req.body) res.status(400).json({message: "invalid inputs"})
 
-    //check for token to see if user is authorized
     const token = req.session.token
     if(!token) res.status(401).json({message: "action not authorized"})
     else{
@@ -18,16 +18,14 @@ router.post('/', async (req, res) => {
             //get user id from token
             const usr_id = jwt.verify(token, process.env.TOKEN_SECRET)
 
-            //create post
-            const post = new Thought({
-                content: req.body.content,
+            //find all posts belonging to the user
+            Thought.find({
                 user_id: usr_id
+            }).sort('-created') //sort based on creation time
+            .exec((err, thoughts) => {
+                if(err) res.status(400).json({message: err})
+                res.status(200).json({thoughts: thoughts})
             })
-
-            //save the post
-            const savedPost = await post.save();
-
-            res.status(200).json({message: "thought successfully shared"})
         } catch (err) {
             res.status(400).json({message: err})
         }

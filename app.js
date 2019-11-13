@@ -37,6 +37,7 @@ app.use('/auth', require('./api/authentication/authenticate'))
 
 //thoughts routes
 app.use('/post', require('./api/thoughts/post'))
+app.use('/show', require('./api/thoughts/show'))
 
 app.listen(port, () =>{
     console.log(`Server started on port ${port}...`)
