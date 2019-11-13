@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken')
 const Thought = require('../models/Thought')
 
 router.post('/', async (req, res) => {
-
     //TODO: proper input validation
     //validate inputs
     if(!req.body) res.status(400).json({message: "invalid inputs"})
