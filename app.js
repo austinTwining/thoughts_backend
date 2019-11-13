@@ -30,10 +30,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 
 //user routes
-app.use('/register', require('./api/register'))
-app.use('/login', require('./api/login'))
-app.use('/logout', require('./api/logout'))
-app.use('/auth', require('./api/authenticate'))
+app.use('/register', require('./api/authentication/register'))
+app.use('/login', require('./api/authentication/login'))
+app.use('/logout', require('./api/authentication/logout'))
+app.use('/auth', require('./api/authentication/authenticate'))
+
+//thoughts routes
+app.use('/post', require('./api/thoughts/post'))
 
 app.listen(port, () =>{
     console.log(`Server started on port ${port}...`)
