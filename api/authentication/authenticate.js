@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 
 const User = require('../models/User')
 
-router.post('/', (req, res) => {
+router.get('/', (req, res) => {
     //check for token
     const token = req.session.token
     if(!token) res.status(401).json({message: "access denied"})
