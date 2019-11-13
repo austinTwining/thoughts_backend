@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/register', require('./api/authentication/register'))
 app.use('/login', require('./api/authentication/login'))
 app.use('/logout', require('./api/authentication/logout'))
-app.use('/auth', require('./api/authentication/authenticate'))
+app.use('/auth', require('./api/authentication/authenticate').router)
 
 //thoughts routes
 app.use('/post', require('./api/thoughts/post'))
