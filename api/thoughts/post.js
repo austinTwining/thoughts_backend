@@ -31,7 +31,15 @@ router.post('/', async (req, res) => {
 })
 
 router.delete('/remove', (req, res) => {
-    //remove post from database
+    const post_id = req.body.post_id
+    const usr_id = auth.authenticate(req.session.token)
+    
+    //delete the post from database
+    Thought.deleteOne({_id: post_id, user_id: usr_id}, (err) => {
+        if(err) res.status(400).json({message: err})
+        //TODO: make response tell you if it was unsuccessful
+        res.json({message: "Thought deleted"})
+    })
 })
 
 module.exports = router;
