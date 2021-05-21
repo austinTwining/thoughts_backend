@@ -1,5 +1,4 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const session = require('express-session')
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
@@ -26,8 +25,8 @@ var db = mongoose.connection;
 app.use(session({secret: process.env.TOKEN_SECRET, saveUninitialized: true, resave: false, store: new MongoStore({mongooseConnection: db})}))
 
 // Parse incoming requests data
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }))
 
 //user routes
 app.use('/register', require('./api/authentication/register'))

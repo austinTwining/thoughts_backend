@@ -7,6 +7,8 @@ const User = require('../models/User')
 
 router.post('/', async (req, res) => {
 
+    console.log(req.hostname)
+
     //TODO: proper input validation
     //validate inputs
     if(!req.body) res.status(400).json({message: "invalide inputs"})

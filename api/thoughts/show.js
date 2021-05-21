@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const auth = require('../authentication/authenticate')
 const Thought = require('../models/Thought')
 
-//gets all posts by logged in user
+//gets all posts
 router.get('/', (req, res) => {
     try {
         //get user id from token
@@ -13,9 +13,7 @@ router.get('/', (req, res) => {
         if(!usr_id) res.status(401).json({message: "action not authorized"})
 
         //find all posts belonging to the user
-        Thought.find({
-            user_id: usr_id
-        }).sort('-created') //sort based on creation time
+        Thought.find({}).sort('-created') //sort based on creation time
         .exec((err, thoughts) => {
             if(err) res.status(400).json({message: err})
             res.status(200).json({thoughts: thoughts})

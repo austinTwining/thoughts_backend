@@ -14,6 +14,9 @@ authenticate = (token) => {
 }
 
 router.get('/', (req, res) => {
+
+    console.log(req.hostname)
+
     //check for token
     const token = req.session.token
     if(!token) res.status(401).json({message: "access denied"})
