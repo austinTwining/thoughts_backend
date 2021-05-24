@@ -16,12 +16,13 @@ router.post('/', async (req, res) => {
         const usr_id = auth.authenticate(req.session.token)
         if(!usr_id) res.status(401).json({message: "action not authorized"})
 
-        const name = User.findById(user_id).name;
+        const u = await User.findById(usr_id);
+        console.log(u.name);
 
         //create post
         const post = new Thought({
             content: req.body.content,
-            name: name,
+            name: u.name,
             user_id: usr_id
         })
 
