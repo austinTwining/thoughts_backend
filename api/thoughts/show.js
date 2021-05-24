@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
         Thought.find({}).sort('-created') //sort based on creation time
         .exec((err, thoughts) => {
             if(err) res.status(400).json({message: err})
-            res.status(200).json({thoughts: thoughts})
+            res.status(200).json(thoughts)
         })
     } catch (err) {
         res.status(400).json({message: err})
@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
 })
 
 //shows all posts for specific user
-router.get('/user', (req, res) => {
+router.post('/user', (req, res) => {
     //TODO: proper input validation
     //validate inputs
     if(!req.body) res.status(400).json({message: "invalide inputs"})
@@ -33,7 +33,7 @@ router.get('/user', (req, res) => {
         user_id: req.body.id
     }).exec((err, thoughts) => {
         if(err) res.status(400).json({message: err})
-        res.status(200).json({thoughts: thoughts})
+        res.status(200).json(thoughts)
     })
 })
 
@@ -44,7 +44,7 @@ router.get('/:id', (req, res) => {
         _id: req.params.id
     }).exec((err, thought) => {
         if(err) res.status(400).json({message: err})
-        res.status(200).json({thought: thought})
+        res.status(200).json(thought)
     })
 })
 

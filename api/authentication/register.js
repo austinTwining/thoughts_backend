@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
         req.session.token = token;
         req.session.save();
 
-        res.header('auth-token', token).json({message: "registration successful"})
+        res.header('auth-token', token).json({message: "registration successful", name: user.name, user_id: user._id})
     }catch(err){
         res.status(400).json({error: err})
     }

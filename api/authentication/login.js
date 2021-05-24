@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
     req.session.token = token
     req.session.save()
 
-    res.status(200).json({message: "login successful"})
+    res.status(200).json({message: "login successful", name: user.name, user_id: user._id})
 })
 
 module.exports = router;
