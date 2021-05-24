@@ -7,6 +7,12 @@ const thoughtSchema = new mongoose.Schema({
         min: 1,
         max: 255
     },
+    name: {
+        type: String,
+        required: true,
+        min: 1,
+        max: 255
+    },
     user_id: {
         type: mongoose.Types.ObjectId,
         ref: 'User'

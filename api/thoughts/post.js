@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 
 const auth = require('../authentication/authenticate')
 const Thought = require('../models/Thought')
+const User = require('../models/User')
 
 router.post('/', async (req, res) => {
     //TODO: proper input validation
@@ -15,9 +16,12 @@ router.post('/', async (req, res) => {
         const usr_id = auth.authenticate(req.session.token)
         if(!usr_id) res.status(401).json({message: "action not authorized"})
 
+        const name = User.findById(user_id).name;
+
         //create post
         const post = new Thought({
             content: req.body.content,
+            name: name,
             user_id: usr_id
         })
 
