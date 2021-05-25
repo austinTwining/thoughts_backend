@@ -39,5 +39,5 @@ app.use('/post', require('./api/thoughts/post'))
 app.use('/show', require('./api/thoughts/show'))
 
 app.listen(port, () =>{
-    console.log(`Server started on port ${port}...`)
+    console.log(`Thoughts server started on port ${port}...`)
 })
