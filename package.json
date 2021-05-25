@@ -4,6 +4,7 @@
   "description": "A test backend for a social media app",
   "main": "app.js",
   "scripts": {
+    "start": "node app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Austin-James Twining",
