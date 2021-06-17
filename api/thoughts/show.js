@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
         if(!usr_id) res.status(401).json({message: "action not authorized"})
 
         //find all posts belonging to the user
-        Thought.find({}).sort('created') //sort based on creation time
+        Thought.find({}).sort(-1) //sort based on creation time
         .exec((err, thoughts) => {
             if(err) res.status(400).json({message: err})
             res.status(200).json(thoughts)
@@ -31,7 +31,7 @@ router.post('/user', (req, res) => {
     //find all posts belonging to the user
     Thought.find({
         user_id: req.body.id
-    }).sort('created').exec((err, thoughts) => {
+    }).sort(-1).exec((err, thoughts) => {
         if(err) res.status(400).json({message: err})
         res.status(200).json(thoughts)
     })
@@ -42,7 +42,7 @@ router.get('/:id', (req, res) => {
     //find all posts belonging to the user
     Thought.find({
         _id: req.params.id
-    }).sort('created').exec((err, thought) => {
+    }).sort(-1).exec((err, thought) => {
         if(err) res.status(400).json({message: err})
         res.status(200).json(thought)
     })
